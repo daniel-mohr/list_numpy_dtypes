@@ -7,6 +7,7 @@
 """
 
 import numpy
+import sys
 
 def print_header():
     print('|            dtype             | dtype.char | dtype.kind | dtype.num | a.dtype.str |')
@@ -17,6 +18,9 @@ def print_data_type_line(a):
         str(numpy.sctypeDict[i]), a.dtype.char, a.dtype.kind, a.dtype.num,
         a.dtype.str))
 
+print('environment:')
+print(sys.version)
+print()
 print(
     '[numpy.dtype](https://numpy.org/devdocs/reference/arrays.dtypes.html):\n')
 
