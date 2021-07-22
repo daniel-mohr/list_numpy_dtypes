@@ -63,9 +63,9 @@ jobs:
     - name: create listing
       run: python list_numpy_dtypes.py
 
-  windows-2016_listing:
-    # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
-    runs-on: windows-2016
+  windows-2019_listing:
+    # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
+    runs-on: windows-2019
     steps:
     - uses: actions/checkout@v2
     - name: conda init powershell
