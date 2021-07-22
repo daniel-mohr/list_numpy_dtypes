@@ -19,7 +19,9 @@ def print_data_type_line(a):
         a.dtype.str))
 
 print('environment:')
-print(sys.version)
+print(' sys.version:', sys.version)
+print(' numpy.version.full_version:', numpy.version.full_version)
+print(' numpy.version.git_revision:', numpy.version.git_revision)
 print()
 print(
     '[numpy.dtype](https://numpy.org/devdocs/reference/arrays.dtypes.html):\n')

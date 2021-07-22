@@ -12,26 +12,32 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - name: install dependencies (ubuntu package)
+      run: sudo apt install python3-numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
 
-  ubuntu-2004_test_doc:
+  ubuntu-2004_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: install dependencies (ubuntu package)
+      run: sudo apt install python3-numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
 
-  macos-1015_test:
+  macos-1015_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
     runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2
+    - name: install dependencies via pip3
+      run: pip3 install numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
 
-  macos-11_test:
+  macos-11_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
     if: ${{ false }}
     # https://github.com/actions/virtual-environments/issues/2486
@@ -39,21 +45,33 @@ jobs:
     runs-on: macos-11
     steps:
     - uses: actions/checkout@v2
+    - name: install dependencies via pip3
+      run: pip3 install numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
 
-  windows-2016_test_v0:
+  windows-2016_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
     runs-on: windows-2016
     steps:
     - uses: actions/checkout@v2
+    - name: conda init powershell
+      run: |
+        &($env:CONDA + "\Scripts\conda") init powershell
+    - name: install dependencies via conda
+      run: conda install -c conda-forge 
     - name: create listing
       run: python list_numpy_dtypes.py
 
-  windows-2016_test_v1:
+  windows-2016_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
     runs-on: windows-2016
     steps:
     - uses: actions/checkout@v2
+    - name: conda init powershell
+      run: |
+        &($env:CONDA + "\Scripts\conda") init powershell
+    - name: install dependencies via conda
+      run: conda install -c conda-forge 
     - name: create listing
       run: python list_numpy_dtypes.py
