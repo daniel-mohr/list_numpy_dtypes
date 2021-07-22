@@ -59,7 +59,7 @@ jobs:
       run: |
         &($env:CONDA + "\Scripts\conda") init powershell
     - name: install dependencies via conda
-      run: conda install -c conda-forge 
+      run: conda install -c conda-forge numpy
     - name: create listing
       run: python list_numpy_dtypes.py
 
@@ -72,6 +72,6 @@ jobs:
       run: |
         &($env:CONDA + "\Scripts\conda") init powershell
     - name: install dependencies via conda
-      run: conda install -c conda-forge 
+      run: conda install -c conda-forge numpy
     - name: create listing
       run: python list_numpy_dtypes.py
