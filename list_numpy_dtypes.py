@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+"""
+:Author: Daniel Mohr
+:Email: daniel.mohr@dlr.de
+:Date: 2021-07-22
+:License: BSD 3-Clause License
+"""
 
 import numpy
 
 def print_header():
-    print('[numpy.dtype](https://numpy.org/devdocs/reference/arrays.dtypes.html):')
-    print()
     print('|            dtype             | dtype.char | dtype.kind | dtype.num | a.dtype.str |')
     print('|------------------------------|------------|------------|-----------|-------------|')
 
@@ -13,17 +17,22 @@ def print_data_type_line(a):
         str(numpy.sctypeDict[i]), a.dtype.char, a.dtype.kind, a.dtype.num,
         a.dtype.str))
 
+print(
+    '[numpy.dtype](https://numpy.org/devdocs/reference/arrays.dtypes.html):\n')
+
 print_header()
 for i in range(24):
     a = numpy.array([], dtype=numpy.sctypeDict[i])
     print_data_type_line(a)
 
+print('only integers:\n')
 print_header()
 for i in range(24):
     a = numpy.array([], dtype=numpy.sctypeDict[i])
     if a.dtype.kind == 'i':
         print_data_type_line(a)
 
+print('only floats:\n')
 print_header()
 for i in range(24):
     a = numpy.array([], dtype=numpy.sctypeDict[i])
