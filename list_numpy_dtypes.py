@@ -9,14 +9,17 @@
 import numpy
 import sys
 
+
 def print_header():
     print('|            dtype             | dtype.char | dtype.kind | dtype.num | a.dtype.str |')
     print('|------------------------------|------------|------------|-----------|-------------|')
+
 
 def print_data_type_line(a):
     print('| {:<28} |     {:>2}     |    {:>2}      |    {:>2}     |    {:>4}     |'.format(
         str(numpy.sctypeDict[i]), a.dtype.char, a.dtype.kind, a.dtype.num,
         a.dtype.str))
+
 
 print('environment:')
 print(' sys.version:', sys.version)
