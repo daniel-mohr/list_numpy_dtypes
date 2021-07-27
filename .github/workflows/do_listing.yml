@@ -38,7 +38,7 @@ jobs:
     - name: upload json instance as artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ubuntu-1804_listing
+        name: ubuntu-2004_listing
         path: data.json
 
   macos-1015_listing:
@@ -50,6 +50,13 @@ jobs:
       run: pip3 install numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
+    - name: creating json output
+      run: env python3 list_numpy_dtypes_json.py
+    - name: upload json instance as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: macos-1015_listing
+        path: data.json
 
   macos-11_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-11-Readme.md
@@ -63,6 +70,13 @@ jobs:
       run: pip3 install numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
+    - name: creating json output
+      run: env python3 list_numpy_dtypes_json.py
+    - name: upload json instance as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: macos-11_listing
+        path: data.json
 
   windows-2016_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md
@@ -76,6 +90,13 @@ jobs:
       run: conda install -c conda-forge numpy
     - name: create listing
       run: python list_numpy_dtypes.py
+    - name: creating json output
+      run: python list_numpy_dtypes_json.py
+    - name: upload json instance as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-2016_listing
+        path: data.json
 
   windows-2019_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
@@ -89,3 +110,10 @@ jobs:
       run: conda install -c conda-forge numpy
     - name: create listing
       run: python list_numpy_dtypes.py
+    - name: creating json output
+      run: python list_numpy_dtypes_json.py
+    - name: upload json instance as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-2019_listing
+        path: data.json
