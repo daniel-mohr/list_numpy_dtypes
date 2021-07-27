@@ -19,10 +19,10 @@ jobs:
     - name: creating json output
       run: env python3 list_numpy_dtypes_json.py
     - name: upload json instance as artifact
-      - uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-1804_listing
-          path: data.json
+      uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-1804_listing
+        path: data.json
 
   ubuntu-2004_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
@@ -36,10 +36,10 @@ jobs:
     - name: creating json output
       run: env python3 list_numpy_dtypes_json.py
     - name: upload json instance as artifact
-      - uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-1804_listing
-          path: data.json
+      uses: actions/upload-artifact@v2
+      with:
+        name: ubuntu-1804_listing
+        path: data.json
 
   macos-1015_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
