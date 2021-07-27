@@ -117,3 +117,13 @@ jobs:
       with:
         name: windows-2019_listing
         path: data.json
+
+  combine:
+    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
+    runs-on: ubuntu-latest
+    needs: [ubuntu-1804_listing, ubuntu-2004_listing, macos-1015_listing, windows-2016_listing, windows-2019_listing]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+    - name: Display structure of downloaded files
+      run: ls -lahR
