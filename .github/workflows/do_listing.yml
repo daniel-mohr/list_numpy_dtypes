@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    # run on every month on day 23 at 06:42
+    - cron: '42 6 23 * *'
 
 jobs:
   ubuntu-1804_listing:

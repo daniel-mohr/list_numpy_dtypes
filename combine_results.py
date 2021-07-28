@@ -95,7 +95,8 @@ with open('index.html', 'w') as fd:
     fd.write('</head>\n')
     fd.write('<body>\n')
     fd.write('<h1 align="center">listing of <a href="https://numpy.org/" target="_blank">numpy</a> dtypes</h1>\n')
-    fd.write('<p>This table is generate by: <a href="https://github.com/daniel-mohr/list_numpy_dtypes" target="_blank">list_numpy_dtypes</a></p>\n')
+    fd.write('<p>This table is generate by <a href="https://github.com/daniel-mohr/list_numpy_dtypes" target="_blank">list_numpy_dtypes</a> on %s:</p>\n' %
+             datetime.date.today().isoformat())
     fd.write('<p><table border="1" rules="all">\n')
     fd.write('<tr align="center">')
     fd.write('<th rowspan="2"><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.num.html" target="_blank">dtype.num</a></th>')
