@@ -9,84 +9,74 @@
 <p><table border="1" rules="all">
 <tr align="center"><th rowspan="2"><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.num.html" target="_blank">dtype.num</a></th><th rowspan="2"><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.char.html" target="_blank">dtype.char</a></th><th rowspan="2"><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.kind.html" target="_blank">dtype.kind</a></th><th colspan="3">Linux</th><th colspan="3">macOS</th><th colspan="3">Windows</th></tr>
 <tr align="center"><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.html" target="_blank">dtype</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.str.html" target="_blank">dtype.str</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.itemsize.html" target="_blank">dtype.itemsize</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.html" target="_blank">dtype</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.str.html" target="_blank">dtype.str</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.itemsize.html" target="_blank">dtype.itemsize</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.html" target="_blank">dtype</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.str.html" target="_blank">dtype.str</a></th><th><a href="https://numpy.org/devdocs/reference/generated/numpy.dtype.itemsize.html" target="_blank">dtype.itemsize</a></th></tr>
-<tr bgcolor="#DDDDDD"><td align="center">0</td><td align="center">?</td><td align="center">b</td><td align="center">numpy.bool_</td><td align="center">|b1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">1</td><td align="center">b</td><td align="center">i</td><td align="center">numpy.int8</td><td align="center">|i1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">2</td><td align="center">B</td><td align="center">u</td><td align="center">numpy.uint8</td><td align="center">|u1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">3</td><td align="center">h</td><td align="center">i</td><td align="center">numpy.int16</td><td align="center">&lt;i2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">4</td><td align="center">H</td><td align="center">u</td><td align="center">numpy.uint16</td><td align="center">&lt;u2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">5</td><td align="center">i</td><td align="center">i</td><td align="center">numpy.int32</td><td align="center">&lt;i4</td><td align="center">4</td><td align="center">numpy.int32</td><td align="center">&lt;i4</td><td align="center">4</td><td align="center">numpy.intc</td><td align="center">&lt;i4</td><td align="center">4</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">6</td><td align="center">I</td><td align="center">u</td><td align="center">numpy.uint32</td><td align="center">&lt;u4</td><td align="center">4</td><td align="center">numpy.uint32</td><td align="center">&lt;u4</td><td align="center">4</td><td align="center">numpy.uintc</td><td align="center">&lt;u4</td><td align="center">4</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">7</td><td align="center">l</td><td align="center">i</td><td align="center">numpy.int64</td><td align="center">&lt;i8</td><td align="center">8</td><td align="center">numpy.int64</td><td align="center">&lt;i8</td><td align="center">8</td><td align="center">numpy.int32</td><td align="center">&lt;i4</td><td align="center">4</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">8</td><td align="center">L</td><td align="center">u</td><td align="center">numpy.uint64</td><td align="center">&lt;u8</td><td align="center">8</td><td align="center">numpy.uint64</td><td align="center">&lt;u8</td><td align="center">8</td><td align="center">numpy.uint32</td><td align="center">&lt;u4</td><td align="center">4</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">9</td><td align="center">q</td><td align="center">i</td><td align="center">numpy.int64</td><td align="center">&lt;i8</td><td align="center">8</td><td align="center">numpy.longlong</td><td align="center">&lt;i8</td><td align="center">8</td><td align="center">numpy.int64</td><td align="center">&lt;i8</td><td align="center">8</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">10</td><td align="center">Q</td><td align="center">u</td><td align="center">numpy.uint64</td><td align="center">&lt;u8</td><td align="center">8</td><td align="center">numpy.ulonglong</td><td align="center">&lt;u8</td><td align="center">8</td><td align="center">numpy.uint64</td><td align="center">&lt;u8</td><td align="center">8</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">11</td><td align="center">f</td><td align="center">f</td><td align="center">numpy.float32</td><td align="center">&lt;f4</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">12</td><td align="center">d</td><td align="center">f</td><td align="center">numpy.float64</td><td align="center">&lt;f8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">13</td><td align="center">g</td><td align="center">f</td><td align="center">numpy.float128</td><td align="center">&lt;f16</td><td align="center">16</td><td align="center">numpy.float128</td><td align="center">&lt;f16</td><td align="center">16</td><td align="center">numpy.longdouble</td><td align="center">&lt;f8</td><td align="center">8</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">14</td><td align="center">F</td><td align="center">c</td><td align="center">numpy.complex64</td><td align="center">&lt;c8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">15</td><td align="center">D</td><td align="center">c</td><td align="center">numpy.complex128</td><td align="center">&lt;c16</td><td align="center">16</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">16</td><td align="center">G</td><td align="center">c</td><td align="center">numpy.complex256</td><td align="center">&lt;c32</td><td align="center">32</td><td align="center">numpy.complex256</td><td align="center">&lt;c32</td><td align="center">32</td><td align="center">numpy.clongdouble</td><td align="center">&lt;c16</td><td align="center">16</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">17</td><td align="center">O</td><td align="center">O</td><td align="center">numpy.object_</td><td align="center">|O</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">18</td><td align="center">S</td><td align="center">S</td><td align="center">numpy.bytes_</td><td align="center">|S1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">19</td><td align="center">U</td><td align="center">U</td><td align="center">numpy.str_</td><td align="center">&lt;U1</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">20</td><td align="center">V</td><td align="center">V</td><td align="center">numpy.void</td><td align="center">|V8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">21</td><td align="center">M</td><td align="center">M</td><td align="center">numpy.datetime64</td><td align="center">&lt;M8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
-<tr bgcolor="#DDDDDD"><td align="center">22</td><td align="center">m</td><td align="center">m</td><td align="center">numpy.timedelta64</td><td align="center">&lt;m8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
-<tr bgcolor="#FFFFFF"><td align="center">23</td><td align="center">e</td><td align="center">f</td><td align="center">numpy.float16</td><td align="center">&lt;f2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">0</td><td align="center">?</td><td align="center">b</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool_" target="_blank">numpy.bool_</a></td><td align="center">|b1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">1</td><td align="center">b</td><td align="center">i</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int8" target="_blank">numpy.int8</a></td><td align="center">|i1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">2</td><td align="center">B</td><td align="center">u</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8" target="_blank">numpy.uint8</a></td><td align="center">|u1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">3</td><td align="center">h</td><td align="center">i</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int16" target="_blank">numpy.int16</a></td><td align="center">&lt;i2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">4</td><td align="center">H</td><td align="center">u</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint16" target="_blank">numpy.uint16</a></td><td align="center">&lt;u2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">5</td><td align="center">i</td><td align="center">i</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int32" target="_blank">numpy.int32</a></td><td align="center">&lt;i4</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.intc" target="_blank">numpy.intc</a></td><td align="center">&lt;i4</td><td align="center">4</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">6</td><td align="center">I</td><td align="center">u</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32" target="_blank">numpy.uint32</a></td><td align="center">&lt;u4</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uintc" target="_blank">numpy.uintc</a></td><td align="center">&lt;u4</td><td align="center">4</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">7</td><td align="center">l</td><td align="center">i</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" target="_blank">numpy.int64</a></td><td align="center">&lt;i8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int32" target="_blank">numpy.int32</a></td><td align="center">&lt;i4</td><td align="center">4</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">8</td><td align="center">L</td><td align="center">u</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint64" target="_blank">numpy.uint64</a></td><td align="center">&lt;u8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32" target="_blank">numpy.uint32</a></td><td align="center">&lt;u4</td><td align="center">4</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">9</td><td align="center">q</td><td align="center">i</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" target="_blank">numpy.int64</a></td><td align="center">&lt;i8</td><td align="center">8</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.longlong" target="_blank">numpy.longlong</a></td><td align="center">&lt;i8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">10</td><td align="center">Q</td><td align="center">u</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint64" target="_blank">numpy.uint64</a></td><td align="center">&lt;u8</td><td align="center">8</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.ulonglong" target="_blank">numpy.ulonglong</a></td><td align="center">&lt;u8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">11</td><td align="center">f</td><td align="center">f</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float32" target="_blank">numpy.float32</a></td><td align="center">&lt;f4</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">12</td><td align="center">d</td><td align="center">f</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float64" target="_blank">numpy.float64</a></td><td align="center">&lt;f8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">13</td><td align="center">g</td><td align="center">f</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float128" target="_blank">numpy.float128</a></td><td align="center">&lt;f16</td><td align="center">16</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.longdouble" target="_blank">numpy.longdouble</a></td><td align="center">&lt;f8</td><td align="center">8</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">14</td><td align="center">F</td><td align="center">c</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex64" target="_blank">numpy.complex64</a></td><td align="center">&lt;c8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">15</td><td align="center">D</td><td align="center">c</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex128" target="_blank">numpy.complex128</a></td><td align="center">&lt;c16</td><td align="center">16</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">16</td><td align="center">G</td><td align="center">c</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex256" target="_blank">numpy.complex256</a></td><td align="center">&lt;c32</td><td align="center">32</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.clongdouble" target="_blank">numpy.clongdouble</a></td><td align="center">&lt;c16</td><td align="center">16</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">17</td><td align="center">O</td><td align="center">O</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.object_" target="_blank">numpy.object_</a></td><td align="center">|O</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">18</td><td align="center">S</td><td align="center">S</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bytes_" target="_blank">numpy.bytes_</a></td><td align="center">|S1</td><td align="center">1</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">19</td><td align="center">U</td><td align="center">U</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.str_" target="_blank">numpy.str_</a></td><td align="center">&lt;U1</td><td align="center">4</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">20</td><td align="center">V</td><td align="center">V</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.void" target="_blank">numpy.void</a></td><td align="center">|V8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">21</td><td align="center">M</td><td align="center">M</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.datetime64" target="_blank">numpy.datetime64</a></td><td align="center">&lt;M8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
+<tr bgcolor="#DDDDDD"><td align="center">22</td><td align="center">m</td><td align="center">m</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.timedelta64" target="_blank">numpy.timedelta64</a></td><td align="center">&lt;m8</td><td align="center">8</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td><td align="center" colspan="3" bgcolor="#BBBBDD">same as Linux</td></tr>
+<tr bgcolor="#FFFFFF"><td align="center">23</td><td align="center">e</td><td align="center">f</td><td align="center"><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.float16" target="_blank">numpy.float16</a></td><td align="center">&lt;f2</td><td align="center">2</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td><td align="center" colspan="3" bgcolor="#DDDDFF">same as Linux</td></tr>
 </table></p><p>The Linux results were generated on:
 <ul>
  <li><a href="https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md">Ubuntu 18.04.5 LTS</a>
   <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
+   <li>sys.version: 3.6.9 (default, Jan 26 2021, 15:33:00) 
+[GCC 8.4.0]</li>
+   <li>sys.byteorder: little</li>
+   <li>numpy.version.full_version: 1.13.3</li>
   </ul>
  </li>
  <li><a href="https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md">Ubuntu 20.04.2 LTS</a>
   <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
+   <li>sys.version: 3.8.10 (default, Jun  2 2021, 10:49:15) 
+[GCC 9.4.0]</li>
+   <li>sys.byteorder: little</li>
+   <li>numpy.version.full_version: 1.17.4</li>
   </ul>
  </li>
 </ul></p>
-<p>The macOS results were generated on:
+<p>The macOS results was generated on:
 <ul>
  <li><a href="https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md">macOS 10.15</a>
   <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
+   <li>sys.version: 3.9.6 (default, Jun 29 2021, 06:20:32) 
+[Clang 12.0.0 (clang-1200.0.32.29)]</li>
+   <li>sys.byteorder: little</li>
+   <li>numpy.version.full_version: 1.21.1</li>
   </ul>
  </li>
 </ul></p>
 <p>The Windows results were generated on:
 <ul>
- <li><a href=""></a>
-  <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
-  </ul>
- </li>
  <li><a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md">Microsoft Windows Server 2016 Datacenter</a>
   <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
+   <li>sys.version: 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)]</li>
+   <li>sys.byteorder: little</li>
+   <li>numpy.version.full_version: 1.21.1</li>
   </ul>
  </li>
  <li><a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md">Microsoft Windows Server 2019 Datacenter</a>
   <ul>
-   <li></li>
-   <li></li>
-   <li></li>
-   <li></li>
+   <li>sys.version: 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)]</li>
+   <li>sys.byteorder: little</li>
+   <li>numpy.version.full_version: 1.21.1</li>
   </ul>
  </li>
 </ul></p>
