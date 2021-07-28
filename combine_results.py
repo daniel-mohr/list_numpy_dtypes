@@ -58,7 +58,11 @@ for i in range(24):
             assert(windows_2016_listing['dtypes'][str(i)][attr] ==
                    data['dtypes'][str(i)][attr])
     for data in [ubuntu_1804_listing, macos_1015_listing, windows_2019_listing]:
-        line.append(re.findall(r"'(.*)'", data['dtypes'][str(i)]['dtype'])[0])
+        res = re.findall(r"'(.*)'", data['dtypes'][str(i)]['dtype'][0])
+        if not bool(res):
+            res = re.findall(r"(.*)", data['dtypes'][str(i)]['dtype'][0])
+        res = res[0]
+        line.append(res)
         for attr in ['dtype.str', 'dtype.itemsize']:
             line.append(str(data['dtypes'][str(i)][attr]))
     table.append(line)
