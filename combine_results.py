@@ -18,6 +18,24 @@ def read_json(filename):
     return json_instance
 
 
+def numpydtypelink(content):
+    link = '<a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#%s" target="_blank">%s</a>' % (
+        content, html.escape(content))
+    return link
+
+
+def sysversion(source):
+    return html.escape(source["environment"]["sys.version"])
+
+
+def sysbyteorder(source):
+    return html.escape(source["environment"]["sys.byteorder"])
+
+
+def numpyversion(source):
+    return html.escape(source["environment"]["numpy.version.full_version"])
+
+
 ubuntu_1804_listing = read_json('ubuntu-1804_listing/data.json')
 ubuntu_2004_listing = read_json('ubuntu-2004_listing/data.json')
 macos_1015_listing = read_json('macos-1015_listing/data.json')
@@ -104,7 +122,8 @@ with open('index.html', 'w') as fd:
         fd.write('<tr bgcolor="%s">' % bgcolor1[0])
         for i in range(3):
             fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-        for i in range(3, 6):
+        fd.write('<td align="center">%s</td>' % numpydtypelink(line[3]))
+        for i in range(4, 6):
             fd.write('<td align="center">%s</td>' % html.escape(line[i]))
         if ((line[3] == line[6]) and (line[4] == line[7]) and
                 (line[5] == line[8]) and (line[3] == line[9]) and
@@ -113,10 +132,26 @@ with open('index.html', 'w') as fd:
                 '<td align="center" colspan="3" bgcolor="%s">same as Linux</td>' % bgcolor2[0])
             fd.write(
                 '<td align="center" colspan="3" bgcolor="%s">same as Linux</td>' % bgcolor2[0])
-        else:
-            for i in range(6, 9):
+        elif ((line[3] == line[6]) and (line[4] == line[7]) and
+                (line[5] == line[8])):
+            fd.write(
+                '<td align="center" colspan="3" bgcolor="%s">same as Linux</td>' % bgcolor2[0])
+            fd.write('<td align="center">%s</td>' % numpydtypelink(line[9]))
+            for i in range(10, 12):
                 fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-            for i in range(9, 12):
+        elif ((line[3] == line[9]) and
+                (line[4] == line[10]) and (line[5] == line[11])):
+            fd.write('<td align="center">%s</td>' % numpydtypelink(line[6]))
+            for i in range(7, 9):
+                fd.write('<td align="center">%s</td>' % html.escape(line[i]))
+            fd.write(
+                '<td align="center" colspan="3" bgcolor="%s">same as Linux</td>' % bgcolor2[0])
+        else:
+            fd.write('<td align="center">%s</td>' % numpydtypelink(line[6]))
+            for i in range(7, 9):
+                fd.write('<td align="center">%s</td>' % html.escape(line[i]))
+            fd.write('<td align="center">%s</td>' % numpydtypelink(line[9]))
+            for i in range(10, 12):
                 fd.write('<td align="center">%s</td>' % html.escape(line[i]))
         fd.write('</tr>\n')
         bgcolor = bgcolor1[0]
@@ -130,56 +165,55 @@ with open('index.html', 'w') as fd:
     fd.write('<ul>\n')
     fd.write(' <li><a href="https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md">Ubuntu 18.04.5 LTS</a>\n')
     fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
+    fd.write('   <li>sys.version: %s</li>\n' % sysversion(ubuntu_1804_listing))
+    fd.write('   <li>sys.byteorder: %s</li>\n' %
+             sysbyteorder(ubuntu_1804_listing))
+    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+             numpyversion(ubuntu_1804_listing))
     fd.write('  </ul>\n')
     fd.write(' </li>\n')
     fd.write(' <li><a href="https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md">Ubuntu 20.04.2 LTS</a>\n')
     fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
+    fd.write('   <li>sys.version: %s</li>\n' % sysversion(ubuntu_2004_listing))
+    fd.write('   <li>sys.byteorder: %s</li>\n' %
+             sysbyteorder(ubuntu_2004_listing))
+    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+             numpyversion(ubuntu_2004_listing))
     fd.write('  </ul>\n')
     fd.write(' </li>\n')
     fd.write('</ul></p>\n')
-    fd.write('<p>The macOS results were generated on:\n')
+    fd.write('<p>The macOS results was generated on:\n')
     fd.write('<ul>\n')
     fd.write(' <li><a href="https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md">macOS 10.15</a>\n')
     fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
+    fd.write('   <li>sys.version: %s</li>\n' % sysversion(macos_1015_listing))
+    fd.write('   <li>sys.byteorder: %s</li>\n' %
+             sysbyteorder(macos_1015_listing))
+    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+             numpyversion(macos_1015_listing))
     fd.write('  </ul>\n')
     fd.write(' </li>\n')
     fd.write('</ul></p>\n')
     fd.write('<p>The Windows results were generated on:\n')
     fd.write('<ul>\n')
-    fd.write(' <li><a href=""></a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
     fd.write(' <li><a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md">Microsoft Windows Server 2016 Datacenter</a>\n')
     fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
+    fd.write('   <li>sys.version: %s</li>\n' %
+             sysversion(windows_2016_listing))
+    fd.write('   <li>sys.byteorder: %s</li>\n' %
+             sysbyteorder(windows_2016_listing))
+    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+             numpyversion(windows_2016_listing))
     fd.write('  </ul>\n')
     fd.write(' </li>\n')
     fd.write(' <li><a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md">Microsoft Windows Server 2019 Datacenter</a>\n')
     fd.write('  <ul>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
-    fd.write('   <li></li>\n')
+    fd.write('   <li>sys.version: %s</li>\n' %
+             sysversion(windows_2019_listing))
+    fd.write('   <li>sys.byteorder: %s</li>\n' %
+             sysbyteorder(windows_2019_listing))
+    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+             numpyversion(windows_2019_listing))
     fd.write('  </ul>\n')
     fd.write(' </li>\n')
     fd.write('</ul></p>\n')
