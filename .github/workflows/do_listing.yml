@@ -125,5 +125,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
-    - name: foo
+    - name: combine results
       run: env python3 combine_results.py
+    - name: generate output
+      run: |
+        mkdir results
+        mv index.html results/
+    - name: adapt doc fo jekyll
+      if: ${{ github.event_name == 'push' }}
+      run: touch results/.nojekyll
+    - name: deploy pages
+      if: ${{ github.event_name == 'push' }}
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: results
+        folder: results
