@@ -49,6 +49,7 @@ for i in range(24):
     # check: ubuntu-1804, ubuntu-2004, macos-1015
     for data in [ubuntu_2004_listing, macos_1015_listing]:
         for attr in ['dtype', 'dtype.str', 'dtype.itemsize']:
+            print(attr)
             assert(ubuntu_1804_listing['dtypes'][str(i)][attr] ==
                    data['dtypes'][str(i)][attr])
     # check: windows-2016, windows-2019
