@@ -45,6 +45,7 @@ jobs:
         path: data.json
 
   i386_ubuntu-1804_listing:
+    # https://github.com/daniel-mohr/i386_ubuntu_1804
     runs-on: ubuntu-latest
     name: ubuntu 18.04 (32 bit)
     steps:
@@ -61,6 +62,7 @@ jobs:
           path: data.json
 
   i386_debian_latest_listing:
+    # https://github.com/daniel-mohr/i386_debian_latest
     runs-on: ubuntu-latest
     name: debian latest (32 bit)
     steps:
