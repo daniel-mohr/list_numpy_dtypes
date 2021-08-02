@@ -38,8 +38,8 @@ def numpyversion(source):
 
 ubuntu_1804_listing = read_json('ubuntu-1804_listing/data.json')
 ubuntu_2004_listing = read_json('ubuntu-2004_listing/data.json')
-i386_ubuntu_1804_listing = read_json('i386_ubuntu-1804_listing/data.json')
-i386_debian_latest_listing = read_json('i386_debian_latest_listing/data.json')
+i386_ubuntu_1804_listing = read_json('ubuntu-1804_i386_listing/data.json')
+i386_debian_latest_listing = read_json('debian_i386_listing/data.json')
 macos_1015_listing = read_json('macos-1015_listing/data.json')
 windows_2016_listing = read_json('windows-2016_listing/data.json')
 windows_2019_listing = read_json('windows-2019_listing/data.json')
