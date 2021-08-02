@@ -160,6 +160,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
+    - name: ls
+      run: ls
     - name: combine results
       run: env python3 combine_results.py
     - name: show result here
