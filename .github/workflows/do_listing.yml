@@ -44,6 +44,38 @@ jobs:
         name: ubuntu-2004_listing
         path: data.json
 
+  i386_ubuntu-1804_listing:
+    runs-on: ubuntu-latest
+    name: ubuntu 18.04 (32 bit)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: do listing in docker image
+        uses: daniel-mohr/i386_ubuntu_1804@v0
+        with:
+          cmdfile: ./do_listing_ubuntu_1804
+      - name: upload json instance as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ubuntu-1804_i386_listing
+          path: data.json
+
+  i386_debian_latest_listing:
+    runs-on: ubuntu-latest
+    name: debian latest (32 bit)
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: do listing in docker image
+        uses: daniel-mohr/i386_debian_latest@v0
+        with:
+          cmdfile: ./do_listing_debian
+      - name: upload json instance as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: debian_i386_listing
+          path: data.json
+
   macos-1015_listing:
     # https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md
     runs-on: macos-10.15
@@ -124,12 +156,14 @@ jobs:
   combine:
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md
     runs-on: ubuntu-latest
-    needs: [ubuntu-1804_listing, ubuntu-2004_listing, macos-1015_listing, windows-2016_listing, windows-2019_listing]
+    needs: [ubuntu-1804_listing, ubuntu-2004_listing, i386_ubuntu-1804_listing, i386_debian_latest_listing, macos-1015_listing, windows-2016_listing, windows-2019_listing]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
     - name: combine results
       run: env python3 combine_results.py
+    - name: show result here
+      run: cat index.html
     - name: generate output
       run: |
         mkdir results

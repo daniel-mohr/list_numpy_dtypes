@@ -2,7 +2,7 @@
 """
 :Author: Daniel Mohr
 :Email: daniel.mohr@dlr.de
-:Date: 2021-07-28
+:Date: 2021-08-02
 :License: BSD 3-Clause License
 """
 
@@ -38,6 +38,8 @@ def numpyversion(source):
 
 ubuntu_1804_listing = read_json('ubuntu-1804_listing/data.json')
 ubuntu_2004_listing = read_json('ubuntu-2004_listing/data.json')
+i386_ubuntu_1804_listing = read_json('i386_ubuntu-1804_listing/data.json')
+i386_debian_latest_listing = read_json('i386_debian_latest_listing/data.json')
 macos_1015_listing = read_json('macos-1015_listing/data.json')
 windows_2016_listing = read_json('windows-2016_listing/data.json')
 windows_2019_listing = read_json('windows-2019_listing/data.json')
@@ -52,17 +54,22 @@ table = []
 # dtype.itemsize
 for i in range(24):
     line = [str(i)]  # dtype.num
-    for data in [ubuntu_1804_listing, ubuntu_2004_listing, macos_1015_listing,
+    for data in [ubuntu_1804_listing, ubuntu_2004_listing,
+                 i386_ubuntu_1804_listing, i386_debian_latest_listing,
+                 macos_1015_listing,
                  windows_2016_listing, windows_2019_listing]:
         # check: dtype.num is always the same
         assert(data['dtypes'][str(i)]['dtype.num'] == i)
     for attr in ['dtype.char', 'dtype.kind']:
         line.append(ubuntu_1804_listing['dtypes'][str(i)][attr])
-        for data in [ubuntu_2004_listing, macos_1015_listing,
+        for data in [ubuntu_2004_listing,
+                     i386_ubuntu_1804_listing, i386_debian_latest_listing,
+                     macos_1015_listing,
                      windows_2016_listing, windows_2019_listing]:
             # check: dtype.char and dtype.kind are always the same
             assert(ubuntu_1804_listing['dtypes'][str(i)][attr] ==
                    data['dtypes'][str(i)][attr])
+
     # we expect ubuntu-1804, ubuntu-2004 and macos-1015 and
     # windows-2016, windows-2019 have the same behavior
     # check: ubuntu-1804, ubuntu-2004
