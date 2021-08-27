@@ -2,7 +2,7 @@
 """
 :Author: Daniel Mohr
 :Email: daniel.mohr@dlr.de
-:Date: 2021-08-02
+:Date: 2021-08-27
 :License: BSD 3-Clause License
 """
 
@@ -21,7 +21,7 @@ def read_json(filename):
 def numpydtypelink(content):
     link = '<a href="https://numpy.org/doc/stable/reference/' \
         'arrays.scalars.html#%s" target="_blank">%s</a>' % (
-            content, html.escape(content))
+            content, html.escape(content[6:]))
     return link
 
 
@@ -36,69 +36,48 @@ def sysbyteorder(source):
 def numpyversion(source):
     return html.escape(source["environment"]["numpy.version.full_version"])
 
+def intcell(content):
+    return '<td align="center">%i</td>' % content
 
-ubuntu_1804_listing = read_json('ubuntu-1804_listing/data.json')
-ubuntu_2004_listing = read_json('ubuntu-2004_listing/data.json')
-i386_ubuntu_1804_listing = read_json('ubuntu-1804_i386_listing/data.json')
-i386_debian_latest_listing = read_json('debian_i386_listing/data.json')
-macos_1015_listing = read_json('macos-1015_listing/data.json')
-windows_2016_listing = read_json('windows-2016_listing/data.json')
-windows_2019_listing = read_json('windows-2019_listing/data.json')
+def strcell(content):
+    return '<td align="center">%s</td>' % html.escape(content)
 
+names = ['Linux (x86_64)',
+         'i386/ubuntu:18.04 (Linux (x86))',
+         'i386/debian:latest (Linux (x86))',
+         'macOS',
+         'Windows']
+data = dict()
+data[names[0]] = dict()
+data[names[0]]['names'] = ['Ubuntu 18.04 LTS', 'Ubuntu 20.04 LTS']
+data[names[0]]['json'] = [read_json('ubuntu-1804_listing/data.json'),
+                          read_json('ubuntu-2004_listing/data.json')]
+data[names[0]]['link'] = [
+    'https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md',
+    'https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md']
+data[names[1]] = dict()
+data[names[1]]['names'] = ['i386/ubuntu:18.04']
+data[names[1]]['json'] = [read_json('ubuntu-1804_i386_listing/data.json')]
+data[names[1]]['link'] = ['https://hub.docker.com/r/i386/ubuntu']
+data[names[2]] = dict()
+data[names[2]]['names'] = ['i386/debian:latest']
+data[names[2]]['json'] = [read_json('debian_i386_listing/data.json')]
+data[names[2]]['link'] = ['https://hub.docker.com/r/i386/debian/']
+data[names[3]] = dict()
+data[names[3]]['names'] = ['macOS 10.15']
+data[names[3]]['json'] = [read_json('macos-1015_listing/data.json')]
+data[names[3]]['link'] = ['https://github.com/actions/virtual-environments/blob/main/images/macos/macos-10.15-Readme.md']
+data[names[4]] = dict()
+data[names[4]]['names'] = ['Microsoft Windows Server 2016 Datacenter',
+                           'Microsoft Windows Server 2019 Datacenter']
+data[names[4]]['json'] = [read_json('windows-2016_listing/data.json'),
+                          read_json('windows-2019_listing/data.json')]
+data[names[4]]['link'] = [
+    'https://github.com/actions/virtual-environments/blob/main/images/win/Windows2016-Readme.md',
+    'https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md']
 
-table = []
-# dtype.num
-# dtype.char
-# dtype.kind
-# dtype
-# dtype.str
-# dtype.itemsize
-for i in range(24):
-    line = [str(i)]  # dtype.num
-    for data in [ubuntu_1804_listing, ubuntu_2004_listing,
-                 i386_ubuntu_1804_listing, i386_debian_latest_listing,
-                 macos_1015_listing,
-                 windows_2016_listing, windows_2019_listing]:
-        # check: dtype.num is always the same
-        assert(data['dtypes'][str(i)]['dtype.num'] == i)
-    for attr in ['dtype.char', 'dtype.kind']:
-        line.append(ubuntu_1804_listing['dtypes'][str(i)][attr])
-        for data in [ubuntu_2004_listing,
-                     i386_ubuntu_1804_listing, i386_debian_latest_listing,
-                     macos_1015_listing,
-                     windows_2016_listing, windows_2019_listing]:
-            # check: dtype.char and dtype.kind are always the same
-            assert(ubuntu_1804_listing['dtypes'][str(i)][attr] ==
-                   data['dtypes'][str(i)][attr])
-
-    # we expect ubuntu-1804, ubuntu-2004 and macos-1015 and
-    # i386_ubuntu_1804_listing, i386_debian_latest_listing and
-    # windows-2016, windows-2019 have the same behavior
-    # check: ubuntu-1804, ubuntu-2004
-    for data in [ubuntu_2004_listing]:
-        for attr in ['dtype', 'dtype.str', 'dtype.itemsize']:
-            assert(ubuntu_1804_listing['dtypes'][str(i)][attr] ==
-                   data['dtypes'][str(i)][attr])
-    # check: i386_ubuntu_1804_listing, i386_debian_latest_listing
-    for data in [i386_debian_latest_listing]:
-        for attr in ['dtype', 'dtype.str', 'dtype.itemsize']:
-            assert(i386_ubuntu_1804_listing['dtypes'][str(i)][attr] ==
-                   data['dtypes'][str(i)][attr])
-    # check: windows-2016, windows-2019
-    for data in [windows_2019_listing]:
-        for attr in ['dtype', 'dtype.str', 'dtype.itemsize']:
-            assert(windows_2016_listing['dtypes'][str(i)][attr] ==
-                   data['dtypes'][str(i)][attr])
-    for data in [ubuntu_1804_listing, i386_debian_latest_listing,
-                 macos_1015_listing, windows_2019_listing]:
-        res = re.findall(r"'(.*)'", data['dtypes'][str(i)]['dtype'][0])
-        if not bool(res):
-            res = re.findall(r"(.*)", data['dtypes'][str(i)]['dtype'][0])
-        res = res[0]
-        line.append(res)
-        for attr in ['dtype.str', 'dtype.itemsize']:
-            line.append(str(data['dtypes'][str(i)][attr]))
-    table.append(line)
+bgcolor1 = ["#DDDDDD", "#FFFFFF"]
+bgcolor2 = ["#BBBBDD", "#DDDDFF"]
 
 with open('index.html', 'w') as fd:
     fd.write('<html>\n')
@@ -116,7 +95,9 @@ with open('index.html', 'w') as fd:
              '<a href="https://github.com/daniel-mohr/list_numpy_dtypes" '
              'target="_blank">list_numpy_dtypes</a> on %s:</p>\n' %
              datetime.date.today().isoformat())
+    # generate table
     fd.write('<p><table border="1" rules="all">\n')
+    # head lines
     fd.write('<tr align="center">')
     fd.write('<th rowspan="2"><a href="https://numpy.org/devdocs/reference/'
              'generated/numpy.dtype.num.html" target="_blank">'
@@ -127,77 +108,61 @@ with open('index.html', 'w') as fd:
     fd.write('<th rowspan="2"><a href="https://numpy.org/devdocs/reference/'
              'generated/numpy.dtype.kind.html" target="_blank">'
              'dtype.kind</a></th>')
-    fd.write('<th colspan="3">Linux (x86_64)</th>')
-    fd.write('<th colspan="3">Linux (x86)</th>')
-    fd.write('<th colspan="3">macOS</th>')
-    fd.write('<th colspan="3">Windows</th>')
+    for name in names:
+        fd.write('<th colspan="3">%s</th>' % html.escape(name))
     fd.write('</tr>\n')
     fd.write('<tr align="center">')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.html" target="_blank">dtype</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.str.html" target="_blank">dtype.str</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.itemsize.html" target="_blank">'
-             'dtype.itemsize</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.html" target="_blank">dtype</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.str.html" target="_blank">dtype.str</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.itemsize.html" target="_blank">'
-             'dtype.itemsize</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.html" target="_blank">dtype</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.str.html" target="_blank">dtype.str</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.itemsize.html" target="_blank">'
-             'dtype.itemsize</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.html" target="_blank">dtype</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.str.html" target="_blank">dtype.str</a></th>')
-    fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
-             'numpy.dtype.itemsize.html" target="_blank">'
-             'dtype.itemsize</a></th>')
-    fd.write('</tr>\n')
-    bgcolor1 = ["#DDDDDD", "#FFFFFF"]
-    bgcolor2 = ["#BBBBDD", "#DDDDFF"]
-    for line in table:
+    for name in names:
+        fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
+                 'numpy.dtype.html" target="_blank">dtype</a></th>')
+        fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
+                 'numpy.dtype.str.html" target="_blank">dtype.str</a></th>')
+        fd.write('<th><a href="https://numpy.org/devdocs/reference/generated/'
+                 'numpy.dtype.itemsize.html" target="_blank">'
+                 'dtype.itemsize</a></th>')
+    # body lines
+    for i in range(24):
         fd.write('<tr bgcolor="%s">' % bgcolor1[0])
-        for i in range(3):
-            fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-        fd.write('<td align="center">%s</td>' % numpydtypelink(line[3]))
-        for i in range(4, 6):
-            fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-        if ((line[3] == line[6]) and (line[4] == line[7]) and
-                (line[5] == line[8])):
-            fd.write(
-                '<td align="center" colspan="3" bgcolor="%s">'
-                'same as Linux (x86_64)</td>' % bgcolor2[0])
-        else:
-            fd.write('<td align="center">%s</td>' % numpydtypelink(line[6]))
-            for i in range(7, 9):
-                fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-        if ((line[3] == line[9]) and (line[4] == line[10]) and
-                (line[5] == line[11])):
-            fd.write(
-                '<td align="center" colspan="3" bgcolor="%s">'
-                'same as Linux (x86_64)</td>' % bgcolor2[0])
-        else:
-            fd.write('<td align="center">%s</td>' % numpydtypelink(line[9]))
-            for i in range(10, 12):
-                fd.write('<td align="center">%s</td>' % html.escape(line[i]))
-        if ((line[3] == line[12]) and (line[4] == line[13]) and
-                (line[5] == line[14])):
-            fd.write(
-                '<td align="center" colspan="3" bgcolor="%s">'
-                'same as Linux (x86_64)</td>' % bgcolor2[0])
-        else:
-            fd.write('<td align="center">%s</td>' % numpydtypelink(line[12]))
-            for i in range(13, 15):
-                fd.write('<td align="center">%s</td>' % html.escape(line[i]))
+        fd.write(intcell(i))
+        for attr in ['dtype.char', 'dtype.kind']:
+            for j in range(len(names)):
+                for k in range(len(data[names[j]]['json'])):
+                    assert(data[names[0]]['json'][0]['dtypes'][str(i)][attr] ==
+                           data[names[j]]['json'][k]['dtypes'][str(i)][attr])
+            fd.write(strcell(data[names[0]]['json'][0]['dtypes'][str(i)][attr]))
+        for name in names:
+            if name == names[0]:
+                act = data[name]['json'][0]['dtypes'][str(i)]
+                # dtype
+                res = re.findall(r"'(.*)'", act['dtype'][0])
+                if not bool(res):
+                    res = re.findall(r"(.*)", act['dtype'][0])
+                res = res[0]
+                fd.write('<td align="center">%s</td>' % numpydtypelink(res))
+                # dtype.str
+                fd.write(strcell(act['dtype.str']))
+                # dtype.itemsize
+                fd.write(intcell(act['dtype.itemsize']))
+            else:
+                ref = data[names[0]]['json'][0]['dtypes'][str(i)]
+                act = data[name]['json'][0]['dtypes'][str(i)]
+                if ((ref['dtype'][0] == act['dtype'][0]) and
+                    (ref['dtype.str'] == act['dtype.str']) and
+                    (ref['dtype.itemsize'] == act['dtype.itemsize'])):
+                    fd.write(
+                        '<td align="center" colspan="3" bgcolor="%s">'
+                        'same as Linux (x86_64)</td>' % bgcolor2[0])
+                else:
+                    # dtype
+                    res = re.findall(r"'(.*)'", act['dtype'][0])
+                    if not bool(res):
+                        res = re.findall(r"(.*)", act['dtype'][0])
+                    res = res[0]
+                    fd.write('<td align="center">%s</td>' % numpydtypelink(res))
+                    # dtype.str
+                    fd.write(strcell(act['dtype.str']))
+                    # dtype.itemsize
+                    fd.write(intcell(act['dtype.itemsize']))
         fd.write('</tr>\n')
         bgcolor = bgcolor1[0]
         bgcolor1[0] = bgcolor1[1]
@@ -205,100 +170,25 @@ with open('index.html', 'w') as fd:
         bgcolor = bgcolor2[0]
         bgcolor2[0] = bgcolor2[1]
         bgcolor2[1] = bgcolor
+    # foot
     fd.write('</table></p>')
-    fd.write('<p>The Linux (x86_64) results were generated on:\n')
-    fd.write('<ul>\n')
-    fd.write(' <li><a href="https://github.com/actions/virtual-environments/'
-             'blob/main/images/linux/Ubuntu1804-README.md">'
-             'Ubuntu 18.04.5 LTS</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' % sysversion(ubuntu_1804_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(ubuntu_1804_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(ubuntu_1804_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write(' <li><a href="https://github.com/actions/virtual-environments/'
-             'blob/main/images/linux/Ubuntu2004-README.md">'
-             'Ubuntu 20.04.2 LTS</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' % sysversion(ubuntu_2004_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(ubuntu_2004_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(ubuntu_2004_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write('</ul></p>\n')
-
-    fd.write('<p>The Linux (x86) results were generated on:\n')
-    fd.write('<ul>\n')
-    fd.write(
-        ' <li><a href="https://hub.docker.com/r/i386/ubuntu">'
-        'i386/ubuntu:18.04</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' %
-             sysversion(i386_ubuntu_1804_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(i386_ubuntu_1804_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(i386_ubuntu_1804_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write(
-        ' <li><a href="https://hub.docker.com/r/i386/debian/">'
-        'i386/debian:latest</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' %
-             sysversion(i386_debian_latest_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(i386_debian_latest_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(i386_debian_latest_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write('</ul></p>\n')
-
-    fd.write('<p>The macOS results was generated on:\n')
-    fd.write('<ul>\n')
-    fd.write(' <li><a href="https://github.com/actions/virtual-environments/'
-             'blob/main/images/macos/macos-10.15-Readme.md">macOS 10.15</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' % sysversion(macos_1015_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(macos_1015_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(macos_1015_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write('</ul></p>\n')
-    fd.write('<p>The Windows results were generated on:\n')
-    fd.write('<ul>\n')
-    fd.write(' <li><a href="https://github.com/actions/virtual-environments/'
-             'blob/main/images/win/Windows2016-Readme.md">'
-             'Microsoft Windows Server 2016 Datacenter</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' %
-             sysversion(windows_2016_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(windows_2016_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(windows_2016_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write(' <li><a href="https://github.com/actions/virtual-environments/'
-             'blob/main/images/win/Windows2019-Readme.md">'
-             'Microsoft Windows Server 2019 Datacenter</a>\n')
-    fd.write('  <ul>\n')
-    fd.write('   <li>sys.version: %s</li>\n' %
-             sysversion(windows_2019_listing))
-    fd.write('   <li>sys.byteorder: %s</li>\n' %
-             sysbyteorder(windows_2019_listing))
-    fd.write('   <li>numpy.version.full_version: %s</li>\n' %
-             numpyversion(windows_2019_listing))
-    fd.write('  </ul>\n')
-    fd.write(' </li>\n')
-    fd.write('</ul></p>\n')
+    # description
+    for name in names:
+        fd.write('<p>The %s results were generated on:\n' % name)
+        fd.write('<ul>\n')
+        for i in range(len(data[name]['names'])):
+            fd.write(' <li><a href="%s">%s</a>\n' % (data[name]['link'][i],
+                                                     data[name]['names'][i]))
+            fd.write('  <ul>\n')
+            fd.write('   <li>sys.version: %s</li>\n' %
+                     sysversion(data[name]['json'][i]))
+            fd.write('   <li>sys.byteorder: %s</li>\n' %
+                     sysbyteorder(data[name]['json'][i]))
+            fd.write('   <li>numpy.version.full_version: %s</li>\n' %
+                     numpyversion(data[name]['json'][i]))
+            fd.write('  </ul>\n')
+            fd.write(' </li>\n')
+        fd.write('</ul></p>\n')
+    # html end
     fd.write('</body>\n')
     fd.write('</html>\n')
