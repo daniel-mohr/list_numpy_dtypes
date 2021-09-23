@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    - name: apt-get update
+      run: sudo apt-get update
     - name: install dependencies (ubuntu package)
-      run: sudo apt install python3-numpy
+      run: sudo apt-get install python3-numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
     - name: creating json output
@@ -32,8 +34,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: apt-get update
+      run: sudo apt-get update
     - name: install dependencies (ubuntu package)
-      run: sudo apt install python3-numpy
+      run: sudo apt-get install python3-numpy
     - name: create listing
       run: env python3 list_numpy_dtypes.py
     - name: creating json output
